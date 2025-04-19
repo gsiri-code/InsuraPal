@@ -2,24 +2,9 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { supabase } from '@/libs/supabase';
 
-const protectedRoutes = [
-  '/dashboard',
-  '/profile',
-  '/switch-plan',
-  '/claim-history',
-];
-
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next();
   const pathname = req.nextUrl.pathname;
-
-  const isProtected = protectedRoutes.some((route) =>
-    pathname.startsWith(route)
-  );
-
-  if (!isProtected) {
-    return res;
-  }
 
   const sessionToken = req.cookies.get('supabase-auth-token')?.value;
 
@@ -42,5 +27,12 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/dashboard/:path*', '/profile/:path*', '/switch-plan/:path*', '/claim-history/:path*'],
+    matcher: [
+        '/dashboard/:path*',
+        '/profile/:path*',
+        '/switch-plan/:path*',
+        '/claim-history/:path*',
+        '/recommend/:path*',
+        '/profile/:path*'
+    ],
 };

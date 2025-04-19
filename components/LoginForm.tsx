@@ -4,13 +4,6 @@ import {supabase} from '@/libs/supabase'
 import Cookies from 'js-cookie'
 
 const LoginForm = () => {
-  useEffect(() => {
-    const token = Cookies.get('supabase-auth-token');
-    if (token) {
-        window.location.href = '/';
-    }
-  }
-  , []);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
