@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "name": "Original Medicare",
+    "monthly_premium": 185,
+    "deductible": "257",
+    "providerCopay": "20%",
+    "prescriptionCopay": "Generic: $10 / Brand: $25",
+    "network": "N/A",
+    "rating": 9.0,
+    "goodFor": ["lower income", "senior", "disability"],
+    "description": [
+      "You're 65, which makes you fully eligible for Medicare — a reliable, government-backed option.",
+      "This plan is a strong match if you're looking for stable, nationwide coverage.",
+      "While it doesn't cover everything, it's an excellent foundation you can supplement if needed."
+    ]
+  },
+  {
+    "id": 2,
+    "name": "UnitedHealthcare Community Plan",
+    "monthly_premium": 0,
+    "deductible": "0",
+    "providerCopay": "0",
+    "prescriptionCopay": "Generic: $5 / Brand: $15",
+    "network": "UnitedHealthCare",
+    "rating": 7.5,
+    "goodFor": ["lower income", "young", "US Citizen"],
+    "description": [
+      "This is your current plan — it’s great for younger people with low income, but might not meet all your needs now.",
+      "As you approach retirement age, you might benefit from a plan that includes more senior-specific care options.",
+      "You may find Medicare provides better access to specialists and age-relevant benefits."
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Kaiser Permanente Gold 1500/20",
+    "monthly_premium": 450,
+    "deductible": "1500",
+    "providerCopay": "20",
+    "prescriptionCopay": "Generic: $7 / Brand: $22",
+    "network": "Kaiser Permanente Integrated Network",
+    "rating": 7.0,
+    "goodFor": ["predictable_costs", "integrated_care", "specialist_access"],
+    "description": [
+      "This plan gives you integrated care and consistent costs — ideal if you prefer a 'one-stop' system.",
+      "However, Kaiser’s network is limited in New York, so your provider options may be restricted.",
+      "Unless you’re committed to the Kaiser system, you might want to explore plans with broader access."
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Cigna Open Access Plus (OAP)",
+    "monthly_premium": 450,
+    "deductible": "1650",
+    "providerCopay": "20",
+    "prescriptionCopay": "Generic: $8 / Brand: $28",
+    "network": "OAP",
+    "rating": 6.5,
+    "goodFor": ["preventive_care", "no_referrals_needed", "HSA_eligible"],
+    "description": [
+      "You won’t need referrals with this plan — great if you like seeing specialists directly.",
+      "Still, with a $450/month premium and high deductible, it may not be the best fit for your budget.",
+      "This plan suits active professionals more than retirees like you."
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Aetna Open Choice PPO",
+    "monthly_premium": 477,
+    "deductible": "2100",
+    "providerCopay": "20",
+    "prescriptionCopay": "Generic: $10 / Brand: $30",
+    "network": "APCN",
+    "rating": 6.0,
+    "goodFor": ["flexible", "specialists"],
+    "description": [
+      "If flexibility and national access are important to you, this PPO gives you freedom to choose providers.",
+      "However, the $477/month premium and high deductible may not be the most cost-effective for your $30K income.",
+      "You’re likely to find better value elsewhere unless you have specific specialist needs."
+    ]
+  }
+]

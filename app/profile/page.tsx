@@ -13,6 +13,7 @@ const ProfilePage = () => {
     insurance_provider: '',
     international: false,
     income_level: '',
+    tags: '',
   });
   const [message, setMessage] = useState('');
 
@@ -28,7 +29,7 @@ const ProfilePage = () => {
 
         console.log("providerRes", providerRes);
 
-        const providerNames = providerRes.data.map((provider)=>provider.name)
+        const providerNames = providerRes.data.map((provider) => provider.name);
 
         const user = userData.user;
         if (!user) return;
@@ -47,15 +48,16 @@ const ProfilePage = () => {
             insurance_provider: data.insurance_provider || '',
             international: data.international || false,
             income_level: data.income_level?.toString() || '',
+            tags: data.tags || ""
           });
         }
 
-        setProviders(providerNames|| []);
-        
+        setProviders(providerNames || []);
+
       } catch (error) {
-        console.log('Error Loading Profile:',error)
-        
-      }finally{
+        console.log('Error Loading Profile:', error);
+
+      } finally {
         setLoading(false);
       }
     };
@@ -87,6 +89,7 @@ const ProfilePage = () => {
         user_id: user.id,
         ...profile,
         income_level: parseFloat(profile.income_level),
+        tags: profile.tags,
       });
 
     setMessage(error ? 'Failed to update profile' : 'Profile updated successfully!');
@@ -141,7 +144,7 @@ const ProfilePage = () => {
       </label>
 
       <label>
-        Income Level:
+        Annual Income:
         <input
           name="income_level"
           type="number"
@@ -150,6 +153,21 @@ const ProfilePage = () => {
           onChange={handleChange}
           required
         />
+      </label>
+
+      <label className="block">
+        <span className="text-gray-700">Tags (comma-separated):</span>
+        <textarea
+          name="tags"
+          value={profile.tags}
+          onChange={(e) => setProfile((prev) => ({ ...prev, tags: e.target.value }))}
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+          placeholder="e.g. student, remote worker, chronic condition"
+          rows={3}
+        />
+        <p className="text-sm text-gray-500 mt-1">
+          Enter tags that describe your needs, separated by commas
+        </p>
       </label>
 
       <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
