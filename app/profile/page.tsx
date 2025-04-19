@@ -18,35 +18,46 @@ const ProfilePage = () => {
 
   useEffect(() => {
     const fetchProfileAndProviders = async () => {
-      setLoading(true);
+      try {
+        setLoading(true);
 
-      const [{ data: userData }, providerRes] = await Promise.all([
-        supabase.auth.getUser(Cookies.get("supabase-auth-token")),
-        fetch('/api/providers').then((res) => res.json()),
-      ]);
+        const [{ data: userData }, providerRes] = await Promise.all([
+          supabase.auth.getUser(Cookies.get("supabase-auth-token")),
+          fetch('/api/providers').then((res) => res.json()),
+        ]);
 
-      const user = userData.user;
-      if (!user) return;
+        console.log("providerRes", providerRes);
 
-      const { data, error } = await supabase
-        .from('profiles')
-        .select('*')
-        .eq('user_id', user.id)
-        .single();
+        const providerNames = providerRes.data.map((provider)=>provider.name)
 
-      if (data) {
-        setProfile({
-          name: data.name || '',
-          location: data.location || '',
-          birthday: data.birthday || '',
-          insurance_provider: data.insurance_provider || '',
-          international: data.international || false,
-          income_level: data.income_level?.toString() || '',
-        });
+        const user = userData.user;
+        if (!user) return;
+
+        const { data, error } = await supabase
+          .from('profiles')
+          .select('*')
+          .eq('user_id', user.id)
+          .single();
+
+        if (data) {
+          setProfile({
+            name: data.name || '',
+            location: data.location || '',
+            birthday: data.birthday || '',
+            insurance_provider: data.insurance_provider || '',
+            international: data.international || false,
+            income_level: data.income_level?.toString() || '',
+          });
+        }
+
+        setProviders(providerNames|| []);
+        
+      } catch (error) {
+        console.log('Error Loading Profile:',error)
+        
+      }finally{
+        setLoading(false);
       }
-
-      setProviders(providerRes.providers || []);
-      setLoading(false);
     };
 
     fetchProfileAndProviders();
