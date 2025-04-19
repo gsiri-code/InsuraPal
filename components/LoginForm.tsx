@@ -1,8 +1,16 @@
 "use client"
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {supabase} from '@/libs/supabase'
+import Cookies from 'js-cookie'
 
 const LoginForm = () => {
+  useEffect(() => {
+    const token = Cookies.get('supabase-auth-token');
+    if (token) {
+        window.location.href = '/';
+    }
+  }
+  , []);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -22,8 +30,9 @@ const LoginForm = () => {
       if (error) {
         setError(error.message);
       } else {
+        Cookies.set('supabase-auth-token', data.session?.access_token || '', { expires: 7 }); // Expires in 7 days
         console.log('Logged in:', data);
-        alert('Logged in successfully!');
+        window.location.href = '/';
       }
     } catch (err: any) {
       setError(err.message);
