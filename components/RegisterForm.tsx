@@ -26,8 +26,9 @@ const RegisterForm = () => {
     const fetchProviders = async () => {
       try {
         const res = await fetch('/api/providers');
-        const data = await res.json();
-        setProviders(data.providers || []);
+        const providers = await res.json();
+        const providerNames = providers.data.map((provider)=>provider.name)
+        setProviders(providerNames || []);
       } catch (err) {
         console.error('Failed to load providers', err);
       }
