@@ -128,9 +128,6 @@ export default function InsuranceChat() {
             <Shield className="h-6 w-6 text-indigo-600" />
             <span className="text-xl font-bold">InsuraPal</span>
           </div>
-          <div className="ml-auto">
-            <AnimatedTooltip items={people} />
-          </div>
         </div>
       </header>
 
