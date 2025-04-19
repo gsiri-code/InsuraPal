@@ -1,11 +1,8 @@
 import { supabase } from "@/libs/supabase";
 
 export async function GET(request: Request) {
-  const healthPlans = await supabase.from("health_plans").select();
+  const data = (await supabase.from("health_plans").select()).data;
 
-  const providers = [];
-  
-  healthPlans.data?.forEach((plan)=>providers.push(plan.name));
 
-  return Response.json({ providers });
+  return Response.json({ data});
 }
